@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Феникс 2018</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/MainPage")
+</head>
+<body ng-app="mainApp">
+    <div ng-controller="mainPageController">
+        <form class="form-signin">
+            <div class="text-center mb-4">
+                <img class="mb-4" src="~/Images/fenixklg.jpg" width="250" height="250">
+                <p class="text-center text-muted">Вход в личный кабинет</p>
+            </div>
+
+            <div class="form-label-group">
+                <input type="email" id="inputEmail" class="form-control" placeholder="Логин" required="" autofocus="">
+                <label for="inputEmail" class="myfont">Электронная почта</label>
+            </div>
+
+            <div class="form-label-group">
+                <input type="password" id="inputPassword" class="form-control" placeholder="Пароль" required="">
+                <label for="inputPassword" class="myfont">Пароль</label>
+            </div>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+            <p class="text-center text-muted">или @Html.ActionLink("зарегистрироваться", "Register", "Main")</p>
+            <p class="mt-5 mb-3 text-muted text-center">© Элизиум 2018</p>
+        </form>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

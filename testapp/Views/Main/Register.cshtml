@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Регистрация - Феникс 2018</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/RegisterPage")
+</head>
+<body ng-app="mainApp">
+    <div ng-controller="registerController">
+        <form class="form-signin">
+            <div class="text-center mb-4">
+                <img class="mb-4" src="~/Images/fenixklg.jpg" width="250" height="250">
+                <p class="text-center text-muted">Регистрация</p>
+            </div>
+            <div ng-show="!registrationSuccess">
+                <div class="form-label-group">
+                    <input type="text" id="inputEmail" class="form-control" placeholder="Электронная почта" autofocus="" ng-model="registerData.email">
+                    <label for="inputEmail" class="myfont">* Электронная почта</label>
+                </div>
+
+                <div class="form-label-group">
+                    <input type="password" id="inputPass" class="form-control" placeholder="Пароль" ng-model="registerData.password">
+                    <label for="inputPass" class="myfont">* Пароль</label>
+                </div>
+
+                <div class="form-label-group">
+                    <input type="text" id="inputSurname" class="form-control" placeholder="Фамилия" ng-model="registerData.surname">
+                    <label for="inputSurname" class="myfont">* Фамилия</label>
+                </div>
+
+                <div class="form-label-group">
+                    <input type="text" id="inputName" class="form-control" placeholder="Имя" ng-model="registerData.name">
+                    <label for="inputName" class="myfont">* Имя</label>
+                </div>
+
+                <div class="form-label-group">
+                    <input type="text" id="inputNik" class="form-control" placeholder="Ник" ng-model="registerData.nik">
+                    <label for="inputNik" class="myfont">Ник</label>
+                </div>
+
+                <div class="form-label-group">
+                    <input type="text" id="inputCity" class="form-control" placeholder="Город" ng-model="registerData.city">
+                    <label for="inputCity" class="myfont">* Город</label>
+                </div>
+
+                <div class="form-label-group">
+                    <input type="text" id="inputComment" class="form-control" placeholder="Медицинские противопоказания" ng-model="registerData.comment">
+                    <label for="inputComment" class="myfont">Комментарий</label>
+                </div>
+
+                <div class="form-label-group">
+                    <select class="form-control myfont" style="height:auto;" ng-model="registerData.type">
+                        <option ng-repeat="type in types" value="{{type.value}}">{{type.text}}</option>
+                    </select>
+                </div>
+
+
+                <p class="text-center text-muted">Обязательные для заполнения <br /> поля помечены звездочкой</p>
+                <p class="text-center text-danger" ng-show="isError">{{errorMsg}}</p>
+                <button class="btn btn-lg btn-primary btn-block" type="button" ng-disabled="registerDisabled()" ng-click="register()">{{action}}</button>
+            </div>
+            <div ng-show="registrationSuccess">
+                <p class="text-center text-muted">Регистрация прошла успешно!</p>
+                <p class="text-center text-muted">Теперь вы можете @Html.ActionLink("войти", "Index", "Main").</p>
+            </div>
+            <p class="mt-5 mb-3 text-muted text-center">© Элизиум 2018</p>
+        </form>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>
