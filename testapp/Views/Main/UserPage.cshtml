@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Феникс 2018</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/MainPage")
+</head>
+<body ng-app="mainApp">
+    <div ng-controller="mainPageController">
+        <div class="text-center mb-4">
+            <img class="mb-4" src="~/Images/fenixklg.jpg" width="250" height="250">
+            <p class="text-center text-muted">Личный кабинет будет доступен пользователям,</p>
+            <p class="text-center text-muted">сдавшим взнос с 01 апреля 2018 года.</p>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

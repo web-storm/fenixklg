@@ -19,16 +19,17 @@
             </div>
 
             <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Логин" required="" autofocus="">
+                <input type="email" id="inputEmail" class="form-control" placeholder="Логин" autofocus="" ng-model="loginData.email">
                 <label for="inputEmail" class="myfont">Электронная почта</label>
             </div>
 
             <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Пароль" required="">
+                <input type="password" id="inputPassword" class="form-control" placeholder="Пароль" ng-model="loginData.password">
                 <label for="inputPassword" class="myfont">Пароль</label>
             </div>
 
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+            <p class="text-center text-danger" ng-show="isError">{{errorMsg}}</p>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="login()" ng-disabled="inProcess">{{action}}</button>
             <p class="text-center text-muted">или @Html.ActionLink("зарегистрироваться", "Register", "Main")</p>
             <p class="mt-5 mb-3 text-muted text-center">© Элизиум 2018</p>
         </form>

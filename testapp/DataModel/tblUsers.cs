@@ -23,6 +23,7 @@ namespace testapp.DataModel
         public string City { get; set; }
         public string Comment { get; set; }
         public Nullable<int> TypeId { get; set; }
+        public Nullable<System.DateTime> RegDate { get; set; }
     
         public virtual tblUserTypes tblUserTypes { get; set; }
     }

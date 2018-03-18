@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "c:\users\user\documents\visual studio 2017\Projects\testapp\testapp\DataModel\Data.edmx" включено. 
+﻿// Создание кода T4 для модели "C:\Users\User\documents\visual studio 2017\Projects\testapp\testapp\DataModel\Data.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.
