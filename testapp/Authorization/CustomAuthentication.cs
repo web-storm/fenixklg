@@ -4,6 +4,7 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.Security;
 using testapp.DataModel;
+using testapp.Helpers;
 
 namespace testapp.Authorization
 {
@@ -64,15 +65,21 @@ namespace testapp.Authorization
         public static tblUsers GetCurrentUser(HttpContextBase httpCtx)
         {
             tblUsers currentUser = null;
-
-            HttpCookie authCookie = httpCtx.Request.Cookies.Get(cookieName);
-            if (authCookie != null && !string.IsNullOrEmpty(authCookie.Value))
+            try
             {
-                var ticket = FormsAuthentication.Decrypt(authCookie.Value);
-                using (var ctx = new fenixklgEntities())
+                HttpCookie authCookie = httpCtx.Request.Cookies.Get(cookieName);
+                if (authCookie != null && !string.IsNullOrEmpty(authCookie.Value))
                 {
-                    currentUser = ctx.tblUsers.FirstOrDefault(u => u.Email == ticket.Name);
+                    var ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                    using (var ctx = new fenixklgEntities())
+                    {
+                        currentUser = ctx.tblUsers.FirstOrDefault(u => u.Email == ticket.Name);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                NotificationHelper.NotifyByEmail("s-t-o-r-m@list.ru", $"Ошибка получения кук (Value=\"{httpCtx.Request.Cookies.Get(cookieName).Value}\"): {ex.ToString()}");
             }
 
             return currentUser;

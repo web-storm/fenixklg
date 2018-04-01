@@ -26,6 +26,7 @@ myApp.controller("userPageController", ($scope, $http) => {
     $scope.wishSended = false;
     $scope.greetingName = "";
     $scope.greeting = "Загружаем данные..";
+    $scope.activityMsg = "";
 
     $scope.getUserInfo = () => {
         $http({ method: "POST", url: "GetUserInfo" })
@@ -33,6 +34,7 @@ myApp.controller("userPageController", ($scope, $http) => {
                 if (r.data.success) {
                     $scope.userInfo = r.data.userInfo;
                     $scope.userInfo.wish = "";
+                    $scope.activityMsg = "Личный кабинет будет доступен Вам после оплаты взноса.";
                     $scope.greetingName = $scope.userInfo.Nik == null || $scope.userInfo.Nik == "" ? $scope.userInfo.Name : $scope.userInfo.Nik;
                     $scope.greeting = $scope.greetingName + ", приветствуем!";
                 }

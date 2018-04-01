@@ -174,6 +174,14 @@ namespace testapp.Controllers
                         };
                         ctx.tblUsers.Add(user);
                         ctx.SaveChanges();
+                        ctx.tblBalance.Add(new tblBalance {
+                            UserId = user.Id,
+                            IsEnabled = false,
+                            IsBank = false,
+                            Code = "",
+                            Balance = 35
+                        });
+                        ctx.SaveChanges();
                         var msg = $"Доброго времени суток, {user.Name}! Вы зарегистрироваль на Феникс 2018!\n " +
                             $"Для активации профиля Вам необходимо сдать взнос организаторам. " +
                             $"Для дальнейшего доступа в личный кабинет используйте Ваш логин ({user.Email}) и пароль ({user.Password}).\n" +

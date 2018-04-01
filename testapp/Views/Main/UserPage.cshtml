@@ -16,22 +16,22 @@
             <img class="mb-4" src="~/Images/fenixklg.jpg" width="250" height="250">
             <p class="text-center text-muted">{{greeting}} (@Html.ActionLink("выйти", "LogOut", "Main"))</p>
 
-            <div ng-if="userInfo.IsActive" style="max-width: 500px; min-width: 500px;">
+            <div ng-if="userInfo.IsActive" style="max-width: 351px; min-width: 351px;">
                 <div class="text-center">
-                    <div class="alert alert-warning" role="alert" style="max-width: 200px; min-width: 200px; margin-left:30%;">
+                    <div class="alert alert-warning" role="alert" style="max-width: 200px; min-width: 200px; margin-left:21%;">
                         У вас на счету {{userInfo.Balance}} <img src="~/Images/burning.png" width="20" height="20" />
                     </div>
                 </div>
 
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <ul class="nav nav-pills mb-3 koslil" id="pills-tab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-schedule" role="tab" aria-controls="pills-home" aria-selected="true">Мероприятия</a>
+                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-schedule" role="tab" aria-controls="pills-home" aria-selected="true">Заявки</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-news" role="tab" aria-controls="pills-home" aria-selected="true">Новости</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-bal" role="tab" aria-controls="pills-contact" aria-selected="false">Программа бала</a>
+                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-bal" role="tab" aria-controls="pills-contact" aria-selected="false">Бал</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Пожелания</a>
@@ -41,7 +41,7 @@
                     <div class="tab-pane fade show active" id="pills-schedule" role="tabpanel" aria-labelledby="pills-home-tab">
                         <div class="mb-3">
                             <p class="text-muted">Не забудьте о мероприятиях, на которых необходима предварительная заявка:</p>
-                            <div class="card" style="width: 23rem; margin-left:14%;">
+                            <div class="card" style="width: 351px;">
                                 <img class="card-img-top" src="~/Images/turnir.jpg">
                                 <div class="card-body">
                                     <h5 class="card-title">Турнир по фехтованию</h5>
@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                             <br />
-                            <div class="card" style="width: 23rem; margin-left:14%;">
+                            <div class="card" style="width: 351px;">
                                 <img class="card-img-top" src="~/Images/kri1.jpg">
                                 <div class="card-body">
                                     <h5 class="card-title">КРИ "Выжившие"</h5>
@@ -81,7 +81,7 @@
                                 </div>
                             </div>
                             <br />
-                            <div class="card" style="width: 23rem; margin-left:14%;">
+                            <div class="card" style="width: 351px;">
                                 <img class="card-img-top" src="~/Images/kri2.jpg">
                                 <div class="card-body">
                                     <h5 class="card-title">КРИ "Сага о последних мозгах"</h5>
@@ -101,7 +101,7 @@
                         <div class="mb-3">
                             <p class="text-muted">Список последний новостей:</p>
                             <div ng-repeat="item in news">
-                                <div class="card" style="width: 18rem; margin-left:21%;">
+                                <div class="card" style="width: 351px;">
                                     <div class="card-header bg-primary">
                                         {{item.Title}}
                                     </div>
@@ -116,7 +116,7 @@
                     </div>
                     <div class="tab-pane fade show" id="pills-bal" role="tabpanel" aria-labelledby="pills-home-tab">
                         <div class="mb-3">
-                            <div class="card" style="width: 23rem; margin-left:14%;">
+                            <div class="card" style="width: 351px;">
                                 <img class="card-img-top" src="~/Images/bal.jpg" alt="Ролевой бал">
                                 <div class="card-body">
                                     <h5 class="card-title">Программа бала</h5>
@@ -170,7 +170,7 @@
                             <span class="badge badge-success" ng-if="wishSended">Успешно отправлено!</span>
                             <div ng-hide="wishSended">
                                 <label for="wishes" class="text-muted">Не забудьте оставить пожелания организаторам:</label>
-                                <textarea class="form-control" style="min-width:500px;" id="wishes" rows="3" ng-model="userInfo.wish"></textarea>
+                                <textarea class="form-control" style="min-width:351px;" id="wishes" rows="3" ng-model="userInfo.wish"></textarea>
                                 <br />
                                 <button class="btn btn-primary btn-block" type="button" ng-click="sendWish()">Отправить</button>
                             </div>
@@ -178,9 +178,8 @@
                     </div>
                 </div>
             </div>
-            <div ng-if="!userInfo.IsActive">
-                <p class="text-center text-muted">Личный кабинет будет доступен Вам</p>
-                <p class="text-center text-muted">после оплаты взноса.</p>
+            <div ng-if="!userInfo.IsActive" style="max-width: 351px; min-width: 351px;">
+                <p class="text-center text-muted">{{activityMsg}}</p>
             </div>
             <p class="mt-5 mb-3 text-muted text-center">© Элизиум 2018</p>
         </div>
