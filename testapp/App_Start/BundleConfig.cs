@@ -29,6 +29,7 @@ namespace testapp
             bundles.Add(new ScriptBundle("~/bundles/angular").Include("~/Scripts/angular.js"));
             bundles.Add(new ScriptBundle("~/bundles/MainPage").Include("~/ControllersJs/MainPageController.js"));
             bundles.Add(new ScriptBundle("~/bundles/RegisterPage").Include("~/ControllersJs/RegisterController.js"));
+            bundles.Add(new ScriptBundle("~/bundles/UserPage").Include("~/ControllersJs/UserPageController.js"));
         }
     }
 }

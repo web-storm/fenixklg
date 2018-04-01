@@ -5,6 +5,26 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Хранилище fenixklgModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblBalance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IsEnabled" Type="bit" Nullable="false" />
+          <Property Name="IsBank" Type="bit" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Balance" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblNews">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="Content" Type="varchar(max)" />
+          <Property Name="Date" Type="datetime" />
+        </EntityType>
         <EntityType Name="tblUsers">
           <Key>
             <PropertyRef Name="Id" />
@@ -27,6 +47,18 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="100" />
         </EntityType>
+        <Association Name="FK_Users">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+          <End Role="tblBalance" Type="Self.tblBalance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBalance">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserTypes">
           <End Role="tblUserTypes" Type="Self.tblUserTypes" Multiplicity="0..1" />
           <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="*" />
@@ -40,8 +72,14 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище fenixklgModelContainer">
+          <EntitySet Name="tblBalance" EntityType="Self.tblBalance" Schema="u0476656_john" store:Type="Tables" />
+          <EntitySet Name="tblNews" EntityType="Self.tblNews" Schema="u0476656_john" store:Type="Tables" />
           <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="u0476656_john" store:Type="Tables" />
           <EntitySet Name="tblUserTypes" EntityType="Self.tblUserTypes" Schema="u0476656_john" store:Type="Tables" />
+          <AssociationSet Name="FK_Users" Association="Self.FK_Users">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblBalance" EntitySet="tblBalance" />
+          </AssociationSet>
           <AssociationSet Name="FK_UserTypes" Association="Self.FK_UserTypes">
             <End Role="tblUserTypes" EntitySet="tblUserTypes" />
             <End Role="tblUsers" EntitySet="tblUsers" />
@@ -66,6 +104,7 @@
           <Property Name="TypeId" Type="Int32" />
           <NavigationProperty Name="tblUserTypes" Relationship="Self.FK_UserTypes" FromRole="tblUsers" ToRole="tblUserTypes" />
           <Property Name="RegDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblBalance" Relationship="fenixklgModel.FK_Users" FromRole="tblUsers" ToRole="tblBalance" />
         </EntityType>
         <EntityType Name="tblUserTypes">
           <Key>
@@ -94,7 +133,46 @@
             <End Role="tblUserTypes" EntitySet="tblUserTypes" />
             <End Role="tblUsers" EntitySet="tblUsers" />
           </AssociationSet>
+          <EntitySet Name="tblBalance" EntityType="fenixklgModel.tblBalance" />
+          <AssociationSet Name="FK_Users" Association="fenixklgModel.FK_Users">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblBalance" EntitySet="tblBalance" />
+          </AssociationSet>
+          <EntitySet Name="tblNews" EntityType="fenixklgModel.tblNews" />
         </EntityContainer>
+        <EntityType Name="tblBalance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="IsBank" Type="Boolean" Nullable="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Balance" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblUsers" Relationship="fenixklgModel.FK_Users" FromRole="tblBalance" ToRole="tblUsers" />
+        </EntityType>
+        <Association Name="FK_Users">
+          <End Type="fenixklgModel.tblUsers" Role="tblUsers" Multiplicity="1" />
+          <End Type="fenixklgModel.tblBalance" Role="tblBalance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBalance">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblNews">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -122,6 +200,28 @@
               <MappingFragment StoreEntitySet="tblUserTypes">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBalance">
+            <EntityTypeMapping TypeName="fenixklgModel.tblBalance">
+              <MappingFragment StoreEntitySet="tblBalance">
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="IsBank" ColumnName="IsBank" />
+                <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblNews">
+            <EntityTypeMapping TypeName="fenixklgModel.tblNews">
+              <MappingFragment StoreEntitySet="tblNews">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

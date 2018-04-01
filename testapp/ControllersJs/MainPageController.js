@@ -38,7 +38,7 @@ myApp.controller("mainPageController", ($scope, $http) => {
                 return;
             }
             else {
-                window.location.replace("http://" + window.location.host + "/Main/UserPage?id=" + r.data.userId);
+                window.location.replace("http://" + window.location.host + "/Main/UserPage");
             }
         });
     };

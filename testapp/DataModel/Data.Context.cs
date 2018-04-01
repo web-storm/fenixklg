@@ -27,5 +27,7 @@ namespace testapp.DataModel
     
         public virtual DbSet<tblUsers> tblUsers { get; set; }
         public virtual DbSet<tblUserTypes> tblUserTypes { get; set; }
+        public virtual DbSet<tblBalance> tblBalance { get; set; }
+        public virtual DbSet<tblNews> tblNews { get; set; }
     }
 }

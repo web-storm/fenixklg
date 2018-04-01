@@ -118,3 +118,8 @@ a {
 .required {
     color: red;
 }
+
+.nav > li > a {
+    color: white;
+    text-decoration: none;
+}

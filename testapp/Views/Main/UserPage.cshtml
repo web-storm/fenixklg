@@ -8,14 +8,181 @@
     <title>Феникс 2018</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/angular")
-    @Scripts.Render("~/bundles/MainPage")
+    @Scripts.Render("~/bundles/UserPage")
 </head>
 <body ng-app="mainApp">
-    <div ng-controller="mainPageController">
+    <div ng-controller="userPageController">
         <div class="text-center mb-4">
             <img class="mb-4" src="~/Images/fenixklg.jpg" width="250" height="250">
-            <p class="text-center text-muted">Личный кабинет будет доступен пользователям,</p>
-            <p class="text-center text-muted">сдавшим взнос с 01 апреля 2018 года.</p>
+            <p class="text-center text-muted">{{greeting}} (@Html.ActionLink("выйти", "LogOut", "Main"))</p>
+
+            <div ng-if="userInfo.IsActive" style="max-width: 500px; min-width: 500px;">
+                <div class="text-center">
+                    <div class="alert alert-warning" role="alert" style="max-width: 200px; min-width: 200px; margin-left:30%;">
+                        У вас на счету {{userInfo.Balance}} <img src="~/Images/burning.png" width="20" height="20" />
+                    </div>
+                </div>
+
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-schedule" role="tab" aria-controls="pills-home" aria-selected="true">Мероприятия</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-news" role="tab" aria-controls="pills-home" aria-selected="true">Новости</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-bal" role="tab" aria-controls="pills-contact" aria-selected="false">Программа бала</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Пожелания</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-schedule" role="tabpanel" aria-labelledby="pills-home-tab">
+                        <div class="mb-3">
+                            <p class="text-muted">Не забудьте о мероприятиях, на которых необходима предварительная заявка:</p>
+                            <div class="card" style="width: 23rem; margin-left:14%;">
+                                <img class="card-img-top" src="~/Images/turnir.jpg">
+                                <div class="card-body">
+                                    <h5 class="card-title">Турнир по фехтованию</h5>
+                                    <p class="card-text">
+                                        Представляем вам турнир по ролевому фехтованию «Лесной клинок»!<br />
+                                        Будут представлены две номинации:<br /> 
+                                        1. Бой на тямбарах.<br />
+                                        2. Бой на стеклотекстолитовых клинках.<br />
+                                        В обеих номинациях работает олимпийская система сражений (каждый с каждым).<br />
+                                        Также по решению монетки будет определяться бой на одном оружее или меч+щит/кинжал.<br />
+                                        Для боёв первой номинации обязательна защита кистей, локтей и колен, во второй номинации защита включает в себя защиту корпуса, кистей, локтей и колен. В сражениях со щитами защита головы обязательна.<br />
+                                        Организаторы могут предоставить оружее и защиту. 
+                                    </p>
+                                    <a href="https://vk.com/topic-160090008_37546377" class="btn btn-primary">Оставить заявку</a>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="card" style="width: 23rem; margin-left:14%;">
+                                <img class="card-img-top" src="~/Images/kri1.jpg">
+                                <div class="card-body">
+                                    <h5 class="card-title">КРИ "Выжившие"</h5>
+                                    <p class="card-text">
+                                        В субботу, 21 апреля, на Фениксе пройдёт кабинетная ролевая игра "Выжившие"<br />
+                                        Автор игры: Мастер N<br />
+                                        Организатор-рестартер игры: Белка<br />
+                                        Внимание! Игра расчитана на 6 часов по времени и на 10 человек!<br />
+                                        Вся информация в группе игры КРИ "Выжившие"<br />
+
+                                        И вот прошла еще одна сотня лет. Чего же добились вы, люди?<br />
+                                        Прошлись по своим территориям радиактивными снарядами? Заточили себя в клубочки безопасной цивилизации и живете, будто бы не замышляя очередную пакость друг другу?<br />
+                                        Кто ты - человек, проснувшийся в этом новом старом мире, где наука нацелена на производство оружия смерти, заботясь лишь о бессмертии сильных мира сего? Кто ты, человек, чем ты поможешь этому механизму, левиафану, пожирающему самого себя пол именем "человечество"?<br />
+                                        Ты по-прежнему ограничен. Ютишься в небольшой квартирке или заведуешь забегаловкой. Ловишь бандюков с района или работаешь примерным служащим в корпорации здоровья.<br />
+                                        Ты во Франции. Это Орлеан. Еще один островок человеческого "благополучия".<br />
+                                        Открой глаза. Куда ведет твой путь?
+                                    </p>
+                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSezUUoPuOrFttgNND0W58GeWKQId3M9SXdaabkGNY2H30Gn2w/viewform" class="btn btn-primary">Оставить заявку</a>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="card" style="width: 23rem; margin-left:14%;">
+                                <img class="card-img-top" src="~/Images/kri2.jpg">
+                                <div class="card-body">
+                                    <h5 class="card-title">КРИ "Сага о последних мозгах"</h5>
+                                    <p class="card-text">
+                                        22 апреля, в воскресенье, на Фениксе пройдет Кабинетная ролевая игра "Сага о последних мозгах"<br />
+                                        Организатор МГ "Мантикора". Калуга<br />
+                                        Игра рассчитана на 3 часа<br />
+
+                                        Наша игра про постпостапокалипсис. Да да, именно так. ПОСТ ПОСТ АПОКАЛИПСИС. После жуткого вируса вымерли почти все люди, их пожрали злые зомби - кого-то надкусили и сделали равными, кто-то был просто закуской у которой съедались мозги. Прошло 100 лет. Последний оплот человечества - военная лаборатория - был взят штурмом 50 лет назад, и там обосновались зомби-учёные, зомби-лаборанты и зомби-военные. Периодически совершались набеги на лагери людей, уходить приходилось всё дальше, еды становилось всё меньше. И вот он, час икс! Осталось последние трое человек, больше питаться не чем. И совету зомби придётся решать - что же делать с тремя последними мозгами.
+                                    </p>
+                                    <a href="https://vk.com/event162296365?w=wall-162296365_3%2Fall" class="btn btn-primary">Оставить заявку</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="pills-news" role="tabpanel" aria-labelledby="pills-home-tab">
+                        <div class="mb-3">
+                            <p class="text-muted">Список последний новостей:</p>
+                            <div ng-repeat="item in news">
+                                <div class="card" style="width: 18rem; margin-left:21%;">
+                                    <div class="card-header bg-primary">
+                                        {{item.Title}}
+                                    </div>
+                                    <div class="card-body">
+                                        <h6 class="card-subtitle mb-2 text-muted">Добавлено {{item.Date}}</h6>
+                                        <p class="card-text">{{item.Content}}</p>
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="pills-bal" role="tabpanel" aria-labelledby="pills-home-tab">
+                        <div class="mb-3">
+                            <div class="card" style="width: 23rem; margin-left:14%;">
+                                <img class="card-img-top" src="~/Images/bal.jpg" alt="Ролевой бал">
+                                <div class="card-body">
+                                    <h5 class="card-title">Программа бала</h5>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <span class="badge badge-primary" style="margin-bottom:10px;">I отделение</span>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item">Бранль официальный*</li>
+                                                <li class="list-group-item">Бранль конский*</li>
+                                                <li class="list-group-item">Романеска***</li>
+                                                <li class="list-group-item">Бретонская круговая джига*</li>
+                                                <li class="list-group-item">Павана графа Солтсберри*</li>
+                                                <li class="list-group-item">Шапелуаз*</li>
+                                                <li class="list-group-item">КД Зеленые рукава**</li>
+                                                <li class="list-group-item">Па-де-грас*</li>
+                                                <li class="list-group-item">КД Черная лошадка**</li>
+                                                <li class="list-group-item">Вальс Людовика XV**</li>
+                                                <li class="list-group-item">КД Пистолет*</li>
+                                                <li class="list-group-item">Гроссфатер*</li>
+                                            </ul>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge badge-primary" style="margin-bottom:10px;">II отделение</span>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item">Вальс Дружба*</li>
+                                                <li class="list-group-item">КД Прихоть лорда Байрона*</li>
+                                                <li class="list-group-item">Марш-карусель*</li>
+                                                <li class="list-group-item">КД Гребите дружно моряки*</li>
+                                                <li class="list-group-item">Испанский вальс**</li>
+                                                <li class="list-group-item">Полька-тройка*</li>
+                                                <li class="list-group-item">Виргинский рил*</li>
+                                                <li class="list-group-item">Вальс Ринка**</li>
+                                                <li class="list-group-item">Гусарская полька**</li>
+                                                <li class="list-group-item">Шотландский вальс***</li>
+                                                <li class="list-group-item">Берлинская полька*</li>
+                                                <li class="list-group-item">Кадриль "Летучая мышь"***</li>
+                                            </ul>
+                                        </li>
+                                        <li class="list-group-item">
+                                            *простые танцы типа "встань и танцуй" <br />
+                                            **более сложные танцы, требующие, например, знания вальса <br />
+                                            ***сложные танцы <br />
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                        <div class="form-group">
+                            <span class="badge badge-success" ng-if="wishSended">Успешно отправлено!</span>
+                            <div ng-hide="wishSended">
+                                <label for="wishes" class="text-muted">Не забудьте оставить пожелания организаторам:</label>
+                                <textarea class="form-control" style="min-width:500px;" id="wishes" rows="3" ng-model="userInfo.wish"></textarea>
+                                <br />
+                                <button class="btn btn-primary btn-block" type="button" ng-click="sendWish()">Отправить</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="!userInfo.IsActive">
+                <p class="text-center text-muted">Личный кабинет будет доступен Вам</p>
+                <p class="text-center text-muted">после оплаты взноса.</p>
+            </div>
+            <p class="mt-5 mb-3 text-muted text-center">© Элизиум 2018</p>
         </div>
     </div>
     @Scripts.Render("~/bundles/jquery")

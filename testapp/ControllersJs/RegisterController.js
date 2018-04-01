@@ -12,7 +12,8 @@ myApp.controller("registerController", ($scope, $http) => {
         { value: "1", text: "Участник" },
         { value: "2", text: "Веду МК" },
         { value: "3", text: "Участник ярмарки" },
-        { value: "4", text: "Веду лекцию/ семинар / круглый стол" }
+        { value: "4", text: "Веду лекцию/ семинар / круглый стол" },
+        { value: "5", text: "Организатор"}
     ];
 
     $scope.registerData = {
